@@ -16,21 +16,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        // 'laravelVersion' => Application::VERSION,
-        // 'phpVersion' => PHP_VERSION,
-    ]);
-});
-
+Route::get('/', [LoginController::class,'login']);
 
 // 登入後的畫面
 // '/home'參照app/Http/Providers/RouteServiceProvider
-Route::get('/home', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/home',[HomeController::class,'controlPanel'])
+    ->middleware(['auth', 'verified'])
+    ->name('home');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
