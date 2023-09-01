@@ -21,6 +21,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
+                // 根據不同的角色，導向到不同的頁面去
+                switch(Auth::user()->role){
+                    case 'user':
+                        return redirect(RouteServiceProvider::USERHOME);
+                    break;
+                    case 'merchant':
+                        return redirect(RouteServiceProvider::HOME);
+                    break;
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

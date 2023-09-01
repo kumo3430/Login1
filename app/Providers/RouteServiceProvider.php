@@ -19,7 +19,11 @@ class RouteServiceProvider extends ServiceProvider
      */
     // public const HOME = '/dashboard';
     // web.php -> Route::get('/home') 入口
+    
+    // merchant
     public const HOME = '/home';
+    // user
+    public const USERHOME = '/userhome';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
