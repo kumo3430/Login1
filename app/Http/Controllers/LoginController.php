@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
-    function login() {
+    function login()
+    {
         return Inertia::render('Login', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),

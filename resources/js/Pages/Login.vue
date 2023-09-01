@@ -18,7 +18,7 @@ defineProps({
 
         <!--這裏的路由要改成backstage-->
         <Link v-if="$page.props.auth.user" 
-             :href="route('backstage')" 
+             :href="route('home')" 
              class="text-sm text-gray-700 dark:text-gray-500 underline">
                  管理中心
         </Link>
