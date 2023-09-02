@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +29,9 @@ Route::get('/home',[HomeController::class,'controlPanel'])
     ->middleware(['auth', 'verified'])
     ->name('home');
 
-
+Route::get('/userhome', [UserController::class,'userCenter'])
+    ->middleware(['auth', 'verified'])
+    ->name('userhome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

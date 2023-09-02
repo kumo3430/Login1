@@ -13,6 +13,8 @@ const showingNavigationDropdown = ref(false);
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
+
+
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,15 +22,15 @@ const showingNavigationDropdown = ref(false);
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('home')">
-                                <ApplicationLogo class="block h-9 w-auto fill-current text-gray-800" />
+                                <Link :href="route('userhome')">
+                                <ApplicationLogo class="block h-9 w-auto" />
                                 </Link>
                             </div>
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('home')" :active="route().current('home')">
-                                    管理中心
+                                <NavLink :href="route('userhome')" :active="route().current('userhome')">
+                                    會員中心
                                 </NavLink>
                             </div>
                         </div>
@@ -87,8 +89,8 @@ const showingNavigationDropdown = ref(false);
                 <!-- Responsive Navigation Menu -->
                 <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('home')" :active="route().current('home')">
-                            管理中心
+                        <ResponsiveNavLink :href="route('userhome')" :active="route().current('userhome')">
+                            會員中心
                         </ResponsiveNavLink>
                     </div>
 

@@ -38,7 +38,7 @@ class AuthenticatedSessionController extends Controller
             case 'user':
                 return redirect()->intended(RouteServiceProvider::USERHOME);
             break;
-            case 'admin':
+            case 'merchant':
                 return redirect()->intended(RouteServiceProvider::HOME);
             break;
         }
