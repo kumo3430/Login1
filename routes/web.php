@@ -26,11 +26,11 @@ Route::get('/', [LoginController::class,'login']);
 // 登入後的畫面
 // '/home'參照app/Http/Providers/RouteServiceProvider
 Route::get('/home',[HomeController::class,'controlPanel'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified','auth.role'])
     ->name('home');
 
 Route::get('/userhome', [UserController::class,'userCenter'])
-    ->middleware(['auth', 'verified'])
+    ->middleware(['auth', 'verified','auth.role'])
     ->name('userhome');
 
 Route::middleware('auth')->group(function () {
