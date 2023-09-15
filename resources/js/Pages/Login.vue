@@ -13,6 +13,10 @@ const userInfo = reactive({
   user: { link: route("userhome"), string: "會員中心",},
   admin: { link: route("home"), string: "管理中心", },
 });
+
+//用來綁定選擇項目的變數
+const testSelect = reactive({ quizbank: 3, type: "test" });
+
 </script>
 
 <template>
@@ -57,16 +61,29 @@ const userInfo = reactive({
         <input type="radio" name="type" value="practice" />練習
       </div>
 
-      <button class="px-6 py-2 border rounded-lg bg-blue-700 text-blue-100">
+      <!-- <button class="px-6 py-2 border rounded-lg bg-blue-700 text-blue-100">
           開始
-      </button>
-
+      </button> -->
+          <!--原本的Button改成Inertia內建的Link組件，有a link的功能-->
+      <Link :href="route('test.start', testSelect)"
+            class="px-6 py-2 border rounded-lg bg-blue-700 text-blue-100">
+          開始
+      </Link>
       <div class="m-4">
         <div>瀏灠題庫:</div>
-        <Link class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
+        <!-- <Link class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
           網頁設計丙級
         </Link>
         <Link class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
+          網頁設計乙級
+        </Link> -->
+         <!--在題庫連結加上路由和參數-->
+        <Link :href="route('quiz.browser', 3)"
+              class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
+          網頁設計丙級
+        </Link>
+        <Link :href="route('quiz.browser', 2)"
+              class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">
           網頁設計乙級
         </Link>
       </div>

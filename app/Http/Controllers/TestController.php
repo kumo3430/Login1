@@ -12,7 +12,7 @@ class TestController extends Controller
     function startTest($quizbank,$type) {
         return Inertia::render('StartTest',[
             'canLogin' => Route::has('login'),
-            'canRegister' => Route::hsa('register'),
+            'canRegister' => Route::has('register'),
             'username'=>Auth::user()->name??'訪客',
             'role'=>Auth::user()->role??'guest',
             'quizbank'=>$quizbank,

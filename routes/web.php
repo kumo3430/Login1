@@ -8,6 +8,8 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\QuizbankController;
 
 
 /*
@@ -39,7 +41,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/start-test/{bank}/{type}',[TestController::class,'startTest'])->name('test.start');
-Route::get('/browsser-quiz/{bank}',[BankController::class,'browser'])->name('quiz.browser');
+Route::get('/start-test/{quizbank}/{type}',[TestController::class,'startTest'])
+        ->name('test.start');
+
+Route::get('/browser-quiz/{quizbank}',[QuizbankController::class,'browser'])
+        ->name('quiz.browser');
 
 require __DIR__.'/auth.php';
