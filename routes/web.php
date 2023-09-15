@@ -39,4 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/start-test/{bank}/{type}',[TestController::class,'startTest'])->name('test.start');
+Route::get('/browsser-quiz/{bank}',[BankController::class,'browser'])->name('quiz.browser');
+
 require __DIR__.'/auth.php';
