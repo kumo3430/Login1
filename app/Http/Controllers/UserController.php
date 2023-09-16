@@ -8,6 +8,6 @@ use Inertia\Inertia;
 class UserController extends Controller
 {
     function userCenter(){
-        return Inertia::render('UserHome');
+        return Inertia::render('UserHome/UserHome');
     }
 }

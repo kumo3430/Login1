@@ -47,4 +47,13 @@ Route::get('/start-test/{quizbank}/{type}',[TestController::class,'startTest'])
 Route::get('/browser-quiz/{quizbank}',[QuizbankController::class,'browser'])
         ->name('quiz.browser');
 
+Route::get('/home/banks',[HomeController::class,'bankList'])
+        ->name('home.bank');
+Route::get('/home/quizzes',[HomeController::class,'quizList'])
+        ->name('home.quiz');
+Route::get('/home/tests',[HomeController::class,'testList'])
+        ->name('home.test');
+Route::get('/home/groups',[HomeController::class,'groupList'])
+        ->name('home.group');
+
 require __DIR__.'/auth.php';
