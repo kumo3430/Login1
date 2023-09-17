@@ -23,16 +23,16 @@ use App\Http\Controllers\QuizbankController;
 |
 */
 
-Route::get('/', [LoginController::class,'login']);
+Route::get('/', [LoginController::class, 'login']);
 
 // 登入後的畫面
 // '/home'參照app/Http/Providers/RouteServiceProvider
-Route::get('/home',[HomeController::class,'controlPanel'])
-    ->middleware(['auth', 'verified','auth.role'])
+Route::get('/home', [HomeController::class, 'controlPanel'])
+    ->middleware(['auth', 'verified', 'auth.role'])
     ->name('home');
 
-Route::get('/userhome', [UserController::class,'userCenter'])
-    ->middleware(['auth', 'verified','auth.role'])
+Route::get('/userhome', [UserController::class, 'userCenter'])
+    ->middleware(['auth', 'verified', 'auth.role'])
     ->name('userhome');
 
 Route::middleware('auth')->group(function () {
@@ -41,19 +41,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/start-test/{quizbank}/{type}',[TestController::class,'startTest'])
-        ->name('test.start');
+Route::get('/start-test/{quizbank}/{type}', [TestController::class, 'startTest'])
+    ->name('test.start');
 
-Route::get('/browser-quiz/{quizbank}',[QuizbankController::class,'browser'])
-        ->name('quiz.browser');
+Route::get('/browser-quiz/{quizbank}', [QuizbankController::class, 'browser'])
+    ->name('quiz.browser');
 
-Route::get('/home/banks',[HomeController::class,'bankList'])
-        ->name('home.bank');
-Route::get('/home/quizzes',[HomeController::class,'quizList'])
-        ->name('home.quiz');
-Route::get('/home/tests',[HomeController::class,'testList'])
-        ->name('home.test');
-Route::get('/home/groups',[HomeController::class,'groupList'])
-        ->name('home.group');
+Route::get('/home/banks', [HomeController::class, 'bankList'])
+    ->name('home.bank');
+Route::get('/home/quizzes', [HomeController::class, 'quizList'])
+    ->name('home.quiz');
+Route::get('/home/tests', [HomeController::class, 'testList'])
+    ->name('home.test');
+Route::get('/home/groups', [HomeController::class, 'groupList'])
+    ->name('home.group');
 
-require __DIR__.'/auth.php';
+Route::inertia('/home/bank/create', 'Home/CreateBank')->name('bank.create');
+Route::post('/home/bank',[HomeController::class,'store'])->name('bank.store');
+
+require __DIR__ . '/auth.php';
