@@ -15,7 +15,13 @@ class HomeController extends Controller
         return Inertia::render('Home/Home');
     }
     function bankList() {
-        return Inertia::render('Home/Banks');
+        $subjects = Subject::all();
+        $const = Subject::count();
+        return Inertia::render('Home/Banks',
+        [
+            'subjects'=>$subjects,
+            'count'=>Subject::count()
+        ]);
     }
     function quizList() {
         return Inertia::render('Home/Quizzes');

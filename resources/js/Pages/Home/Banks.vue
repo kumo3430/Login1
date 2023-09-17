@@ -1,6 +1,8 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link } from "@inertiajs/inertia-vue3";
+
+const props = defineProps({ subjects: Array, count: Number });
 </script>
 
 <template>
@@ -29,26 +31,21 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
                             </Link>
                         </div>
                         <div class="w-5/6 border rounded-xl p-4">
-                            <!-- <button class="py-2 px-3 border rounded-xl bg-blue-700 text-blue-100 my-4">
-                                新增題庫
-                            </button> -->
                             <Link :href="route('bank.create')"
                                 class="inline-block py-2 px-3 border rounded-xl bg-blue-700 text-blue-100 my-4">
                             新增題庫
                             </Link>
-                            <div class="w-full border rounded-xl flex p-4 bg-green-400 justify-between">
-                                <div>題庫一</div>
-                                <div>編輯 / 刪除</div>
-                            </div>
-                            <div class="w-full border rounded-xl flex p-4 bg-green-400 justify-between">
-                                <div>題庫二</div>
-                                <div>編輯 / 刪除</div>
-                            </div>
-                            <div class="w-full border rounded-xl flex p-4 bg-green-400 justify-between">
-                                <div>題庫三</div>
+                            <div class="w-full px-4 py-2">題目總數:{{ count }}</div>
+                            <div v-for="subject in subjects" :key="subject.id"
+                                class="w-full border rounded-xl flex p-4 bg-green-400 justify-between">
+                                <div>
+                                    {{ subject.seq }}.
+                                    {{ subject.subject }}
+                                </div>
                                 <div>編輯 / 刪除</div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
