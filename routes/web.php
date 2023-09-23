@@ -59,4 +59,8 @@ Route::get('/home/groups', [HomeController::class, 'groupList'])
 Route::inertia('/home/bank/create', 'Home/CreateBank')->name('bank.create');
 Route::post('/home/bank',[HomeController::class,'store'])->name('bank.store');
 
+Route::get('/home/bank/edit/{id}',[HomeController::class,'edit'])->name('bank.edit');
+Route::put('/home/bank/{id}',[HomeController::class,'update'])->name('bank.update');
+
+Route::delete('/home/bank/{id}',[HomeController::class,'destroy'])->name('bank.destroy');
 require __DIR__ . '/auth.php';

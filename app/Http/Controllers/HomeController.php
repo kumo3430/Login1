@@ -53,4 +53,42 @@ class HomeController extends Controller
         }
         return redirect()->route('home.bank');
     }
+
+    function edit($id) {
+        $subject=Subject::find($id);
+        $options=$subject->options;
+        return Inertia::render('Home/EditBank',
+        [
+            'subject'=>$subject,
+            'options'=>$options
+        ]);
+    }
+
+    function update(Request $request,$id) {
+        $subject=Subject::find($id);
+        $subject->subject=$request->subject;
+        $subject->seq=$request->seq;
+        $subject->code=$request->code;
+        $subject->level=$request->level;
+        $subject->group=$request->group;
+        $subject->multiple=$request->multiple;
+        $subject->save();
+
+        foreach($request->options as $key => $opt) {
+            $option=Option::find($opt['id']);
+            $option->option=$opt['option'];
+            $option->ans=$opt['ans'];
+            $option->save();
+        }
+        return redirect()->route('home.bank');
+    }
+
+    function destroy($id) {
+        $subject=Subject::find($id);
+        $options= $subject->options;
+        $subject->delete();
+        $options->map(function($opt){
+            $opt->delete();
+        });
+    }
 }

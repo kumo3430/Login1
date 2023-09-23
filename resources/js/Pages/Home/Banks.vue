@@ -42,7 +42,9 @@ const props = defineProps({ subjects: Array, count: Number });
                                     {{ subject.seq }}.
                                     {{ subject.subject }}
                                 </div>
-                                <div>編輯 / 刪除</div>
+                                <Link :href="route('bank.edit', subject.id)">編輯</Link>
+                                <Link :href="route('bank.destroy', subject.id)" method="delete" as="buttion">刪除</Link>
+                                <!-- <div>編輯</div> -->
                             </div>
                         </div>
 
