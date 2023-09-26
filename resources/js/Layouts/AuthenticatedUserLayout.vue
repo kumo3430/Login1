@@ -17,7 +17,9 @@ const showingNavigationDropdown = ref(false);
 
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> -->
+                <!-- 把區塊寬度改為全寬滿版 -->
+                <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
                         <div class="flex">
                             <!-- Logo -->
@@ -114,15 +116,26 @@ const showingNavigationDropdown = ref(false);
             </nav>
 
             <!-- Page Heading -->
-            <header class="bg-white shadow" v-if="$slots.header">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <!-- <header class="bg-white shadow" v-if="$slots.header"> -->
+            <!--調整header的z-index 要顯示出header的底部陰影線-->
+            <header class="bg-white shadow relative z-20" v-if="$slots.header">
+                <!-- <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"> -->
+                <!-- 把區塊寬度改為全寬滿版 -->
+                <div class="w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <slot name="header" />
                 </div>
             </header>
 
             <!-- Page Content -->
-            <main>
-                <slot />
+            <!--調整main的z-index 讓main在header之下-->
+            <main class="relative z-10">
+                <!--後台主內容區-->
+                <div class="w-full bg-white flex">
+                    <!--左側選單組件放在這-->
+                    <BackstageLeftMenu />
+
+                    <!--右側的內容會由slot來引入-->
+                    <slot />
             </main>
         </div>
     </div>

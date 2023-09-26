@@ -8,7 +8,11 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BankController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\QuizbankController;
 
 
@@ -47,20 +51,50 @@ Route::get('/start-test/{quizbank}/{type}', [TestController::class, 'startTest']
 Route::get('/browser-quiz/{quizbank}', [QuizbankController::class, 'browser'])
     ->name('quiz.browser');
 
-Route::get('/home/banks', [HomeController::class, 'bankList'])
-    ->name('home.bank');
-Route::get('/home/quizzes', [HomeController::class, 'quizList'])
-    ->name('home.quiz');
-Route::get('/home/tests', [HomeController::class, 'testList'])
-    ->name('home.test');
-Route::get('/home/groups', [HomeController::class, 'groupList'])
-    ->name('home.group');
+// Route::get('/home/banks', [HomeController::class, 'bankList'])
+//     ->name('home.bank');
+// Route::get('/home/quizzes', [HomeController::class, 'quizList'])
+//     ->name('home.quiz');
+// Route::get('/home/tests', [HomeController::class, 'testList'])
+//     ->name('home.test');
+// Route::get('/home/groups', [HomeController::class, 'groupList'])
+//     ->name('home.group');
+Route::get('/home/banks',[BankController::class,'index'])->name('home.banks');
+Route::get('/home/quizzes',[QuizController::class,'index'])->name('home.quizzes');
+Route::get('/home/tests',[TestController::class,'index'])->name('home.tests');
+Route::get('/home/groups',[GroupController::class,'index'])->name('home.groups');
+
 
 Route::inertia('/home/bank/create', 'Home/CreateBank')->name('bank.create');
-Route::post('/home/bank',[HomeController::class,'store'])->name('bank.store');
+// Route::post('/home/bank',[HomeController::class,'store'])->name('bank.store');
+Route::get('/subjects',[SubjectController::class,'index'])->name('subject.index');
+Route::get('/subject/{bank}/create',[SubjectController::class,'create'])->name('subject.create');
+Route::post('/subject',[SubjectController::class,'store'])->name('subject.store');
 
-Route::get('/home/bank/edit/{id}',[HomeController::class,'edit'])->name('bank.edit');
-Route::put('/home/bank/{id}',[HomeController::class,'update'])->name('bank.update');
+// Route::get('/home/bank/edit/{id}',[HomeController::class,'edit'])->name('bank.edit');
+// Route::put('/home/bank/{id}',[HomeController::class,'update'])->name('bank.update');
+// Route::delete('/home/bank/{id}',[HomeController::class,'destroy'])->name('bank.destroy');
+Route::get('/subject/edit/{id}',[SubjectController::class,'edit'])->name('subject.edit');
+Route::put('/subject/{id}',[SubjectController::class,'update'])->name('subject.update');
+Route::delete('/subject/{id}',[SubjectController::class,'destroy'])->name('subject.destroy');
 
-Route::delete('/home/bank/{id}',[HomeController::class,'destroy'])->name('bank.destroy');
+//用來顯示某個題庫下的題目
+Route::get('/bank/{id}/subjects',[SubjectController::class,'subjectsInBank'])
+        ->name('bank.subjects');
+//建立題庫的表單畫面
+Route::get('/bank/create',[BankController::class,'create'])
+        ->name('bank.create');
+//儲存新增的題庫資料
+Route::post('/bank',[BankController::class,'store'])
+        ->name('bank.store');
+//顯示編輯指定id的題庫表單
+Route::get('/bank/edit/{id}',[BankController::class,'edit'])
+        ->name('bank.edit');
+//更新指定id的題庫資料
+Route::put('/bank/{id}',[BankController::class,'update'])
+        ->name('bank.update');
+//刪除指定id的題庫資料
+Route::delete('/bank/{id}',[BankController::class,'destroy'])
+        ->name('bank.destroy');
+
 require __DIR__ . '/auth.php';

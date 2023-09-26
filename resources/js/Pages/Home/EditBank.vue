@@ -36,15 +36,15 @@ const submit = () => {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200 flex">
                         <div class="w-1/6 border rounded-xl p-4">
-                            <Link :href="route('home.bank')" class="block my-2 py-2 px-4 bg-slate-200">
+                            <Link :href="route('home.banks')" class="block my-2 py-2 px-4 bg-slate-200">
                             管理題庫
                             </Link>
-                            <Link :href="route('home.quiz')" class="block my-2 py-2 px-4 hover:bg-slate-200">
+                            <Link :href="route('home.quizzes')" class="block my-2 py-2 px-4 hover:bg-slate-200">
                             管理試卷</Link>
-                            <Link :href="route('home.test')" class="block my-2 py-2 px-4 hover:bg-slate-200">
+                            <Link :href="route('home.tests')" class="block my-2 py-2 px-4 hover:bg-slate-200">
                             管理測驗
                             </Link>
-                            <Link :href="route('home.group')" class="block my-2 py-2 px-4 hover:bg-slate-200">
+                            <Link :href="route('home.groups')" class="block my-2 py-2 px-4 hover:bg-slate-200">
                             管理群組
                             </Link>
                         </div>

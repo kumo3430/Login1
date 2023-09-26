@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class TestController extends Controller
 {
+    function index() {
+        return Inertia::render('Home/Tests');
+    }
     function startTest($quizbank,$type) {
         return Inertia::render('StartTest',[
             'canLogin' => Route::has('login'),

@@ -15,4 +15,9 @@ class Subject extends Model
     {
        return $this->hasMany(Option::class);
     }
+
+    function bank()
+{
+    return $this->belongsTo(Bank::class);
+}
 }

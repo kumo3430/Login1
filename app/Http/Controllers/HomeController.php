@@ -7,13 +7,22 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Subject;
 use App\Models\Option;
-
+// use App\Services\HomeServices;
+use App\Services\HomeServices;
 
 class HomeController extends Controller
 {
+
+    function __construct( protected HomeServices $home){}
+
     function controlPanel() {
-        return Inertia::render('Home/Home');
+        $infos=$this->home->getInfos();
+        return Inertia::render('Home/Home',['infos'=>$infos]);
     }
+
+    // function controlPanel() {
+    //     return Inertia::render('Home/Home');
+    // }
     function bankList() {
         $subjects = Subject::all();
         $const = Subject::count();
